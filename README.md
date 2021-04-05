@@ -7,4 +7,6 @@ Inspiartion Pulled from the following links.
 
 ## Plan
 1. Use pyhton flask as a server side scripting language
-2. jQuery UI to create some of the more interactive elements.
+2. Use react for the front end development
+
+
