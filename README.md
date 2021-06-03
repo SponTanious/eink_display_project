@@ -1,4 +1,4 @@
-# einkDisplayProject
+# eInk Display Project
 
 Inspiartion Pulled from the following links.
 - https://hackaday.com/2020/08/23/e-paper-display-shows-movies-very-very-slowly/
