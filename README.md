@@ -9,7 +9,8 @@ Support from the following websites
 - https://www.udemy.com/
 
 ## Plan
-1. Use pyhton flask as a server side scripting language
-2. Use react for the front end development
+I want to give this project to my friends as a gift. Which means that it needs to be user friendly.
+My plan is to have a front-end that will allow them to upload files directly to the pi. Allowing them to configure thier 
+display however they want. There will be two modes: Slow-movie mode and Picture mode. 
 
 
