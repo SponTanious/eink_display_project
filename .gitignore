@@ -27,7 +27,7 @@ venv
 __pycache__
 
 #Folders
-**/Videos/
-**/Pictures/
+api/Videos/
+api/Pictures/
 Videos/
 Pictures/
