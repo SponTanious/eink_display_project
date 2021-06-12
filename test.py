@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
 
-from sqlitedict import SqliteDict
-import ffmpeg
 import os
+import time
+import ffmpeg
+from sqlitedict import SqliteDict
 from PIL import Image
 from fractions import Fraction
 from waveshare_epd import epd7in5_V2 as epd_driver
@@ -79,5 +80,12 @@ while 1:
     #Pick Image
     currentImage = os.path.join(photodir, "test.py")
 
+    print(currentImage)
+
     #Process Image
     generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+
+    print("yay")
+
+    epd.sleep()
+    time.sleep(10)
