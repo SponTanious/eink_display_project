@@ -85,7 +85,7 @@ def upload_photo():
     #Get File to upload
     uploaded_photo = request.files['file']
 
-    if uploaded_photo.filename != '' and uploaded_photo.filename.split('.')[-1].lower() in allowedImgExt:
+    if uploaded_photo.filename != '' and uploaded_photo.filename.split('.')[-1].lower() in allowedImgExt and not isfile('../'+storageFolder+'/Photos/'+uploaded_photo.filename):
         #Save photo
         uploaded_photo.save('../'+storageFolder+'/Photos/'+uploaded_photo.filename)
 
