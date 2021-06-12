@@ -23,7 +23,7 @@ def load(key, cache_file="api/cache.sqlite3"):
             value = mydict[key] # No need to use commit(), since we are only loading data!
         return value
     except Exception as ex:
-        print("Error during loading data:", ex)
+        return None
 
 #FFMPEG FUNCTIONS
 def generate_frame_from_image(in_filename, out_filename):
@@ -64,12 +64,20 @@ width = epd.width
 height = epd.height
 
 #Directory Values
-viddir = os.path.join(os.path.dirname(os.path.realpath("api")), "api", "Videos")
-photodir = os.path.join(os.path.dirname(os.path.realpath("api")), "api", "Photos")
+viddir = os.path.join(os.path.dirname(os.path.realpath("public")), "public", "Videos")
+photodir = os.path.join(os.path.dirname(os.path.realpath("public")), "public", "Photos")
 
 print(viddir)
 print(photodir)
 print(width)
 print(height)
 
+while 1:
+    #epd init
+    epd.init()
+    
+    #Pick Image
+    currentImage = os.path.join(photodir, "test.py")
 
+    #Process Image
+    generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
