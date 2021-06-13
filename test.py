@@ -88,32 +88,31 @@ print(photodir)
 print(width)
 print(height)
 
-#while 1:
+while 1:
+    print(epd)
+    #epd init
+    epd.init()
 
-print(epd)
-#epd init
-epd.init()
+    #Pick Image
+    #currentImage = os.path.join(photodir, "test.jpg")
 
-#Pick Image
-#currentImage = os.path.join(photodir, "test.jpg")
+    #print(currentImage)
+    #print(os.path.isfile(currentImage))
 
-#print(currentImage)
-#print(os.path.isfile(currentImage))
+    #Process Image
+    #generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
 
-#Process Image
-#generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+    #Open Processed Image
+    #pil_im = Image.open("/dev/shm/frame.bmp")
 
-#Open Processed Image
-#pil_im = Image.open("/dev/shm/frame.bmp")
+    # display the image
+    #epd.display(epd.getbuffer(pil_im))
 
-# display the image
-#epd.display(epd.getbuffer(pil_im))
+    #print("yay")
 
-#print("yay")
+    #epd.sleep()
+    time.sleep(10)
 
-#epd.sleep()
-time.sleep(10)
+    #print("done")
 
-#print("done")
-
-#sys.exit()
+    #sys.exit()
