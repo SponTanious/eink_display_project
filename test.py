@@ -4,10 +4,25 @@
 import os
 import time
 import ffmpeg
+import signal
+import sys
 from sqlitedict import SqliteDict
 from PIL import Image
 from fractions import Fraction
 from waveshare_epd import epd7in5_V2 as epd_driver
+
+
+#Handle Exit
+def exithandler(signum, frame):
+    try:
+        epd_driver.epdconfig.module_exit()
+    finally:
+        sys.exit()
+
+#On Termination Signal
+signal.signal(signal.SIGTERM, exithandler)
+#On Interrupt from keyboard (CTRL + C)
+signal.signal(signal.SIGINT, exithandler)
 
 #Storage
 def save(key, value, cache_file="api/cache.sqlite3"):
@@ -73,19 +88,25 @@ print(photodir)
 print(width)
 print(height)
 
-while 1:
-    #epd init
-    epd.init()
-    
-    #Pick Image
-    currentImage = os.path.join(photodir, "test.py")
+#while 1:
 
-    print(currentImage)
+#epd init
+epd.init()
 
-    #Process Image
-    generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+#Pick Image
+currentImage = os.path.join(photodir, "test.py")
 
-    print("yay")
+print(currentImage)
+print(os.path.isfile(currentImage))
 
-    epd.sleep()
-    time.sleep(10)
+#Process Image
+generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+
+print("yay")
+
+epd.sleep()
+time.sleep(10)
+
+print("done")
+
+sys.exit()
