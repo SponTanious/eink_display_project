@@ -19,24 +19,6 @@ import ffmpeg
 from PIL import Image
 from fractions import Fraction
 
-
-#Storage
-def save(key, value, cache_file="api/cache.sqlite3"):
-    try:
-        with SqliteDict(cache_file) as mydict:
-            mydict[key] = value # Using dict[key] to store
-            mydict.commit() # Need to commit() to actually flush the data
-    except Exception as ex:
-        print("Error during storing data (Possibly unsupported):", ex)
- 
-def load(key, cache_file="api/cache.sqlite3"):
-    try:
-        with SqliteDict(cache_file) as mydict:
-            value = mydict[key] # No need to use commit(), since we are only loading data!
-        return value
-    except Exception as ex:
-        print("Error during loading data:", ex)
-
 # Ensure this is the correct import for your particular screen
 from waveshare_epd import epd7in5_V2 as epd_driver
 
@@ -69,14 +51,9 @@ def supported_filetype(file):
     _, ext = os.path.splitext(file)
     return ext.lower() == ".mp4"
 
-###############
-#START OF CODE#
-###############
 
 # Ensure this is the correct path to your video folder
-viddir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "api", "Videos")
-photodir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "api", "Photos")
-
+viddir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "Videos")
 if not os.path.isdir(viddir):
     os.mkdir(viddir)
 

@@ -3,14 +3,14 @@
 
 import os
 import time
-import ffmpeg
-import signal
 import sys
-from sqlitedict import SqliteDict
+import signal
+import ffmpeg
 from PIL import Image
-from fractions import Fraction
-from waveshare_epd import epd7in5_V2 as epd_driver
+from sqlitedict import SqliteDict
 
+# Ensure this is the correct import for your particular screen
+from waveshare_epd import epd7in5_V2 as epd_driver
 
 #Handle Exit
 def exithandler(signum, frame):
@@ -88,25 +88,30 @@ print(photodir)
 print(width)
 print(height)
 
-#while 1:
+while 1:
+    #epd init
+    epd.init()
 
-#epd init
-epd.init()
+    #Pick Image
+    currentImage = os.path.join(photodir, "test.jpg")
 
-#Pick Image
-currentImage = os.path.join(photodir, "test.py")
+    print(currentImage)
+    print(os.path.isfile(currentImage))
 
-print(currentImage)
-print(os.path.isfile(currentImage))
+    #Process Image
+    #generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
 
-#Process Image
-generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+    #Open Processed Image
+    pil_im = Image.open("/dev/shm/frame.bmp")
 
-print("yay")
+    # display the image
+    epd.display(epd.getbuffer(pil_im))
 
-epd.sleep()
-time.sleep(10)
+    print("yay")
 
-print("done")
+    epd.sleep()
+    time.sleep(10)
 
-sys.exit()
+    print("done")
+
+    sys.exit()
