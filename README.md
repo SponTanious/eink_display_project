@@ -15,4 +15,4 @@ My plan is to have a front-end that will allow them to upload files directly to 
 display however they want. There will be two modes: Slow-movie mode and Picture mode. 
 
 ## Basic Usage
-Once the requirements are in place (See [Install](https://github.com/SponTanious/eink_display_project/blob/master/README.md) document)
+Once the requirements are in place (See [Install](https://github.com/SponTanious/eink_display_project/blob/master/INSTALL.md) document)
