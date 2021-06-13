@@ -94,25 +94,22 @@ while 1:
     epd.init()
 
     #Pick Image
-    #currentImage = os.path.join(photodir, "test.jpg")
-
-    #print(currentImage)
-    #print(os.path.isfile(currentImage))
+    currentImage = os.path.join(photodir, "test.jpg")
+    print(currentImage)
+    print(os.path.isfile(currentImage))
 
     #Process Image
-    #generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+    generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
 
     #Open Processed Image
-    #pil_im = Image.open("/dev/shm/frame.bmp")
+    pil_im = Image.open("/dev/shm/frame.bmp")
 
     # display the image
-    #epd.display(epd.getbuffer(pil_im))
+    epd.display(epd.getbuffer(pil_im))
 
-    #print("yay")
+    print("yay")
 
-    #epd.sleep()
+    epd.sleep()
     time.sleep(10)
 
     #print("done")
-
-    #sys.exit()
