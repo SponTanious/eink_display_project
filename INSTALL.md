@@ -18,13 +18,10 @@ On the Raspberry Pi:
    * Update package sources: `sudo apt update`
    * Make sure git is installed: `sudo apt install git`
    * Make sure pip is installed: `sudo apt install python3-pip`
-2. Install Waveshare e-paper drivers
-   * `pip3 install git+https://github.com/waveshare/e-Paper.git#egg=waveshare-epd&subdirectory=RaspberryPi_JetsonNano/python`
-3. Make sure dependencies are installed
+2. Make sure dependencies are installed
    * `sudo apt install ffmpeg`
    * `pip3 install ffmpeg-python`
    * `pip3 install pillow`
-   * `pip3 install ConfigArgParse`
    * `pip3 install git+https://github.com/robweber/omni-epd.git#egg=omni-epd`
    * `pip3 install sqlitedict`
    * `pip3 install `
