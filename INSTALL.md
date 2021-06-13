@@ -28,8 +28,6 @@ On the Raspberry Pi:
    * `pip3 install git+https://github.com/robweber/omni-epd.git#egg=omni-epd`
    * `pip3 install sqlitedict`
    * `pip3 install `
-4. Make sure pi is connected to a local network
-   * `Use this [link](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md) for instructions`
 4. Clone this repo
    * `git clone https://github.com/SponTanious/eink_display_project`
    * Navigate to 
