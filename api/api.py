@@ -48,11 +48,11 @@ def get_ordered_photos():
 
     if load('ordered_photo_list') != None:
         for photo in load('ordered_photo_list'):
-            if isfile(join('..\\'+storageFolder+'\\Photos', photo['url'])) :
+            if isfile(join('../'+storageFolder+'/Photos', photo['url'])) :
                 photos.append({'value':photo['value'], 'url':photo['url']})
     else:
-        for url in listdir('..\\'+storageFolder+'\\Photos'):
-            if isfile(join('..\\'+storageFolder+'\\Photos', url)) and url.split('.')[-1].lower() in allowedImgExt:
+        for url in listdir('../'+storageFolder+'/Photos'):
+            if isfile(join('../'+storageFolder+'/Photos', url)) and url.split('.')[-1].lower() in allowedImgExt:
                 photos.append({'value':photoNumber, 'url':url})
                 photoNumber+=1
 
