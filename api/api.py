@@ -1,5 +1,6 @@
 import time
 from flask import Flask, request, redirect, url_for
+import os
 from os import listdir, remove
 from os.path import isfile, join
 from sqlitedict import SqliteDict
@@ -42,6 +43,8 @@ def get_current_time():
 def get_ordered_photos():
     photos = []
     photoNumber = 0
+
+    print(os.path.realpath("../"))
 
     if load('ordered_photo_list') != None:
         for photo in load('ordered_photo_list'):
