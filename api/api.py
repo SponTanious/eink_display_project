@@ -5,7 +5,7 @@ from os.path import isfile, join
 from sqlitedict import SqliteDict
 
 #Change Variable from 'public to 'build' when deploying
-storageFolder='public'
+storageFolder='build'
 allowedImgExt = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png', 'tiff', 'webp', 'tif', 'bmp']
 
 app = Flask(__name__, static_folder='../'+storageFolder, static_url_path='/')
