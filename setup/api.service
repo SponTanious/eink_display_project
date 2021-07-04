@@ -1,0 +1,12 @@
+[Unit]
+Description=Eink Display Project api
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/eink_display_project
+ExecStart=/home/pi/.local/bin/uwsgi setup/api.ini
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
