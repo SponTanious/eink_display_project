@@ -30,6 +30,13 @@ def load(key, cache_file="cache.sqlite3"):
         print("Error during loading data:", ex)
         return None
 
+#Make sure all persistant variables exists
+if load('ordered_photo_list') == None:
+    save('ordered_photo_list', [])
+    
+if load('unique_Photo_ID') == None:
+    save('unique_Photo_ID', 0)
+
 
 @app.route('/')
 def index():
@@ -81,10 +88,6 @@ def delete_photo():
 
 @app.route('/api/upload_photo', methods=['POST'])
 def upload_photo():
-    #Make sure unique_Photo_ID exists
-    if load('unique_Photo_ID') == None:
-        save('unique_Photo_ID', 0)
-    
     #Get File to upload
     uploaded_photo = request.files['file']
 
