@@ -12,6 +12,9 @@ from sqlitedict import SqliteDict
 # Ensure this is the correct import for your particular screen
 from waveshare_epd import epd7in5_V2 as epd_driver
 
+#Change Variable from 'public to 'build' when deploying
+storageFolder='public'
+
 #Handle Exit
 def exithandler(signum, frame):
     try:
@@ -66,50 +69,71 @@ def generate_frame_from_video(in_filename, out_filename, time):
         .run(capture_stdout=True, capture_stderr=True)
     )
 
-
-#I have Photos List
-photos = load('ordered_photo_list')
-print(photos)
-#save('ordered_photo_list',[])
-
-#Let us try to display photo
-
 #epd values
 epd = epd_driver.EPD()
 width = epd.width
 height = epd.height
 
 #Directory Values
-viddir = os.path.join(os.path.dirname(os.path.realpath("public")), "public", "Videos")
-photodir = os.path.join(os.path.dirname(os.path.realpath("public")), "public", "Photos")
+viddir = os.path.join(os.path.dirname(os.path.realpath(storageFolder)), storageFolder, "Videos")
+photodir = os.path.join(os.path.dirname(os.path.realpath(storageFolder)), storageFolder, "Photos")
 
-print(viddir)
-print(photodir)
 print(width)
 print(height)
 
+listLocation = 0
+
 while 1:
-    print(epd)
-    #epd init
-    epd.init()
+    if 1: #Photo Mode
 
-    #Pick Image
-    currentImage = os.path.join(photodir, "test.jpg")
-    print(currentImage)
-    print(os.path.isfile(currentImage))
+        print(epd)
+        #epd init
+        epd.init()
 
-    #Process Image
-    generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
+        #Load Image Order
+        photos = load('ordered_photo_list')
 
-    #Open Processed Image
-    pil_im = Image.open("/dev/shm/frame.bmp")
+        #Check for empty list
+        if photos == [] or photos == None:
+            #Reset position if need be
+            if listLocation >= len(photos):
+                listLocation = 0
 
-    # display the image
-    epd.display(epd.getbuffer(pil_im))
+            #Select Image
+            print(photos[listLocation])
+            currentImage = os.path.join(photodir, "test.jpg")
+            print(currentImage)
+            print(os.path.isfile(currentImage))
 
-    print("yay")
+            #Check if image exists
+            if os.path.isfile(currentImage):
+                #Process Image
+                generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
 
-    epd.sleep()
-    time.sleep(10)
+            #Open Processed Image
+            pil_im = Image.open("/dev/shm/frame.bmp")
 
-    #print("done")
+            # display the image
+            epd.display(epd.getbuffer(pil_im))
+
+            listLocation += 1
+
+            #Sleep for specified time between pictures secs
+            epd.sleep()
+
+            #Frame rate
+            time.sleep(10)
+        
+        #List is empty
+        else:
+            #Sleep for 1 mins
+            epd.sleep()
+            time.sleep(60)
+
+    else: #Video Mode
+        epd.init()
+
+        currentVideo = os.path.join(photodir, "test.jpg")
+
+        epd.sleep()
+        time.sleep(10)

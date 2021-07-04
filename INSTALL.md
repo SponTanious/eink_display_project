@@ -20,17 +20,17 @@ On the Raspberry Pi:
    * Make sure pip is installed: `sudo apt install python3-pip`
 2. Make sure dependencies are installed
    * `sudo apt install ffmpeg`
+   * `sudo apt install build-essential`
+   * `sudo apt install python-dev`
    * `pip3 install ffmpeg-python`
    * `pip3 install pillow`
    * `pip3 install git+https://github.com/robweber/omni-epd.git#egg=omni-epd`
    * `pip3 install sqlitedict`
-   * `pip3 install `
+   * `pip3 install uwsgi`
 4. Clone this repo
    * `git clone https://github.com/SponTanious/eink_display_project`
-   * Navigate to 
-   * Copy the default configuration file: 
 5. Test it out
-   * 
+   * Navigate to eink_display_project
 
    
 ## Running as a service
