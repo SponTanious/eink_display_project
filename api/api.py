@@ -51,9 +51,7 @@ def get_ordered_photos():
     photos = []
     photoNumber = 0
 
-    print(os.path.realpath("../"))
-
-    if load('ordered_photo_list') != None:
+    if load('ordered_photo_list') != []:
         for photo in load('ordered_photo_list'):
             if isfile(join('../'+storageFolder+'/Photos', photo['url'])) :
                 photos.append({'value':photo['value'], 'url':photo['url']})
