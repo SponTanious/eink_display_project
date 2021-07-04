@@ -103,4 +103,4 @@ def upload_photo():
         save('ordered_photo_list', photos)
         save('unique_Photo_ID', value+1)
 
-    return redirect('http://localhost:3000/')#redirect(url_for('index'))
+    return redirect(url_for('index'))

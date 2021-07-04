@@ -37,6 +37,7 @@ On the Raspberry Pi:
 
 ## Running Web Server
 From inside eink_display_project folder.
+   * `sudo rm /etc/nginx/sites-enabled/default`
    * `sudo cp setup/eink_display_project.nginx /etc/nginx/sites-available/eink_display_project.nginx`
    * `sudo ln -s /etc/nginx/sites-available/eink_display_project.nginx /etc/nginx/sites-enabled/eink_display_project.nginx`
    * `sudo systemctl reload nginx`
