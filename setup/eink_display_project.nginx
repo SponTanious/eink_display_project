@@ -9,6 +9,6 @@ server {
 
     location /api {
         include uwsgi_params;
-        uwsgi_pass http://localhost:5000;
+        uwsgi_pass http://localhost:3031;
     }
 }
