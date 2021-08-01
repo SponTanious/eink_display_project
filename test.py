@@ -100,7 +100,10 @@ while 1:
                 listLocation = 0
 
             #Select Image
+            print(photos[listLocation])
             currentImage = os.path.join(photodir, photos[listLocation])
+            print(currentImage)
+            print(os.path.isfile(currentImage))
 
             #Check if image exists
             if os.path.isfile(currentImage):
