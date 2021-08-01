@@ -87,6 +87,7 @@ while 1:
     if 1: #Photo Mode
 
         print(epd)
+
         #epd init
         epd.init()
 
