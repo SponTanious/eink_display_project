@@ -98,7 +98,7 @@ while 1:
         print(photos == [] or photos == None)
 
         #Check for empty list
-        if photos != [] and photos != None:
+        if photos == [] or photos == None:
             #Reset position if need be
             if listLocation >= len(photos):
                 listLocation = 0
