@@ -120,7 +120,7 @@ while 1:
             epd.sleep()
 
             #Frame rate
-            time.sleep(load('frame_rate'))
+            time.sleep(int(load('frame_rate')))
         
         #List is empty
         else:
