@@ -1,40 +1,63 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
 
-# *************************
-# ** Before running this **
-# ** code ensure you've  **
-# ** turned on SPI on    **
-# ** your Raspberry Pi   **
-# ** & installed the     **
-# ** Waveshare library   **
-# *************************
-
 import os
 import time
 import sys
-import random
 import signal
 import ffmpeg
 from PIL import Image
-from fractions import Fraction
+from sqlitedict import SqliteDict
 
 # Ensure this is the correct import for your particular screen
 from waveshare_epd import epd7in5_V2 as epd_driver
 
+#Change Variable from 'public to 'build' when deploying
+storageFolder='build'
 
+#Handle Exit
 def exithandler(signum, frame):
     try:
         epd_driver.epdconfig.module_exit()
     finally:
         sys.exit()
 
-
+#On Termination Signal
 signal.signal(signal.SIGTERM, exithandler)
+#On Interrupt from keyboard (CTRL + C)
 signal.signal(signal.SIGINT, exithandler)
 
+#Storage
+def save(key, value, cache_file="api/cache.sqlite3"):
+    try:
+        with SqliteDict(cache_file) as mydict:
+            mydict[key] = value # Using dict[key] to store
+            mydict.commit() # Need to commit() to actually flush the data
+    except Exception as ex:
+        print("Error during storing data (Possibly unsupported):", ex)
+ 
+def load(key, cache_file="api/cache.sqlite3"):
+    try:
+        with SqliteDict(cache_file) as mydict:
+            value = mydict[key] # No need to use commit(), since we are only loading data!
+        return value
+    except Exception as ex:
+        return None
 
-def generate_frame(in_filename, out_filename, time):
+#FFMPEG FUNCTIONS
+def generate_frame_from_image(in_filename, out_filename):
+    (
+        ffmpeg
+        .input(in_filename)
+        .filter("scale", "iw*sar", "ih")
+        .filter("scale", width, height, force_original_aspect_ratio=1)
+        .filter("pad", width, height, -1, -1)
+        .output(out_filename, vframes=1)
+        .overwrite_output()
+        .run(capture_stdout=True, capture_stderr=True)
+    )
+
+def generate_frame_from_video(in_filename, out_filename, time):
     (
         ffmpeg
         .input(in_filename, ss=time)
@@ -46,54 +69,69 @@ def generate_frame(in_filename, out_filename, time):
         .run(capture_stdout=True, capture_stderr=True)
     )
 
-
-def supported_filetype(file):
-    _, ext = os.path.splitext(file)
-    return ext.lower() == ".mp4"
-
-
-# Ensure this is the correct path to your video folder
-viddir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "Videos")
-if not os.path.isdir(viddir):
-    os.mkdir(viddir)
-
+#epd values
 epd = epd_driver.EPD()
 width = epd.width
 height = epd.height
 
+#Directory Values
+viddir = os.path.join(os.path.dirname(os.path.realpath(storageFolder)), storageFolder, "Videos")
+photodir = os.path.join(os.path.dirname(os.path.realpath(storageFolder)), storageFolder, "Photos")
+
+print(width)
+print(height)
+
+listLocation = 0
+
 while 1:
-    epd.init()
+    if 1: #Photo Mode
 
-    # Pick a random .mp4 video in your video directory
-    videos = list(filter(supported_filetype, os.listdir(viddir)))
-    if not videos:
-        print("No videos found")
-        sys.exit()
-    currentVideo = os.path.join(viddir, random.choice(videos))
+        print(epd)
 
-    # Get framerate and frame count
-    videoInfo = ffmpeg.probe(currentVideo)
-    frameCount = int(videoInfo["streams"][0]["nb_frames"])
-    framerate = videoInfo["streams"][0]["avg_frame_rate"]
-    framerate = float(Fraction(framerate))
-    frametime = 1000 / framerate
+        #epd init
+        epd.init()
 
-    # Pick a random frame
-    frame = random.randint(0, frameCount)
+        #Load Image Order
+        photos = load('ordered_photo_list')
 
-    # Convert that frame to Timecode
-    msTimecode = "%dms" % (frame * frametime)
+        #Check for empty list
+        if photos != [] and photos != None:
+            #Reset position if need be
+            if listLocation >= len(photos):
+                listLocation = 0
 
-    # Use ffmpeg to extract a frame from the movie, letterbox/pillarbox, and save it
-    generate_frame(currentVideo, "/dev/shm/frame.bmp", msTimecode)
+            #Select Image
+            currentImage = os.path.join(photodir, photos[listLocation]['url'])
 
-    # Open image in PIL
-    pil_im = Image.open("/dev/shm/frame.bmp")
+            #Check if image exists
+            if os.path.isfile(currentImage):
+                #Process Image
+                generate_frame_from_image(currentImage, "/dev/shm/frame.bmp")
 
-    # display the image
-    print(f"Displaying frame {frame} of '{os.path.basename(currentVideo)}'")
-    epd.display(epd.getbuffer(pil_im))
+            #Open Processed Image
+            pil_im = Image.open("/dev/shm/frame.bmp")
 
-    # Wait for 10 seconds
-    epd.sleep()
-    time.sleep(10)
+            # display the image
+            epd.display(epd.getbuffer(pil_im))
+
+            listLocation += 1
+
+            #Sleep for specified time between pictures secs
+            epd.sleep()
+
+            #Frame rate
+            time.sleep(int(load('frame_rate')))
+        
+        #List is empty
+        else:
+            #Sleep for 1 mins
+            epd.sleep()
+            time.sleep(60)
+
+    else: #Video Mode
+        epd.init()
+
+        currentVideo = os.path.join(photodir, "test.jpg")
+
+        epd.sleep()
+        time.sleep(10)
