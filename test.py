@@ -94,6 +94,8 @@ while 1:
         #Load Image Order
         photos = load('ordered_photo_list')
 
+        print(photos)
+        
         #Check for empty list
         if photos == [] or photos == None:
             #Reset position if need be
