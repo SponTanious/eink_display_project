@@ -39,9 +39,9 @@ class OrderPhotos extends React.Component {
                             <div key={photo.value} className="ui segment">
                                 <div className="ui two column grid">
                                     <div className="column">
-                                        <img className="ui avatar image" src={`\\Photos\\${photo.url}`}></img>
+                                        <img  className="ui image" src={`\\Photos\\${photo.url}`} style={{height:"100px"}} ></img>
                                     </div>
-                                    <div className="right aligned column">
+                                    <div className="right aligned column">  
                                         <button className="ui button" onClick={() => this.props.onPhotoDelete(photo)} >DELETE PHOTO</button>
                                     </div>
                                 </div>
