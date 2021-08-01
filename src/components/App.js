@@ -11,8 +11,6 @@ class App extends React.Component {
                     <div className="ui horizontal divider">William & Brynlea</div>
                     <p className="ui paragraph">Love you guys I hope you enjoy this gift.</p>
                     <Photos/>
-                    <h2 className="ui header">VIDEOS</h2>
-                    <div className="ui divider"></div>
                 </div>
             </div>
         );
