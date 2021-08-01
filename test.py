@@ -94,21 +94,14 @@ while 1:
         #Load Image Order
         photos = load('ordered_photo_list')
 
-        print(photos)
-        print(photos == [] or photos == None)
-        print(photos[listLocation]['url'])
-
         #Check for empty list
-        if photos == [] or photos == None:
+        if photos != [] and photos != None:
             #Reset position if need be
             if listLocation >= len(photos):
                 listLocation = 0
 
             #Select Image
-            print(photos[listLocation])
-            currentImage = os.path.join(photodir, photos[listLocation])
-            print(currentImage)
-            print(os.path.isfile(currentImage))
+            currentImage = os.path.join(photodir, photos[listLocation]['url'])
 
             #Check if image exists
             if os.path.isfile(currentImage):
