@@ -96,6 +96,8 @@ while 1:
 
         print(photos)
         print(photos == [] or photos == None)
+        print(photos[listLocation])
+        print("yay")
 
         #Check for empty list
         if photos == [] or photos == None:
