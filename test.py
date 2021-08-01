@@ -95,7 +95,8 @@ while 1:
         photos = load('ordered_photo_list')
 
         print(photos)
-        
+        print(photos == [] or photos == None)
+
         #Check for empty list
         if photos == [] or photos == None:
             #Reset position if need be
