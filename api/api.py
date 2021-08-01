@@ -37,6 +37,9 @@ if load('ordered_photo_list') == None:
 if load('unique_Photo_ID') == None:
     save('unique_Photo_ID', 0)
 
+if load('frame_rate') == None:
+    save('frame_rate', 3)
+
 
 @app.route('/')
 def index():
@@ -45,6 +48,16 @@ def index():
 @app.route('/api/time')
 def get_current_time():
     return {'time': time.time()}
+
+@app.route('/api/save_frame_rate', methods=['POST'])
+def save_frame_rate():
+    save('frame_rate', request.json) 
+    return '', 200
+
+@app.route('/api/get_frame_rate')
+def get_frame_rate():
+    print(load('frame_rate'))
+    return {'frameRate': load('frame_rate')}
 
 @app.route('/api/get_ordered_photos')
 def get_ordered_photos():

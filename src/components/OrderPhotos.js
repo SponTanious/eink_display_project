@@ -13,6 +13,7 @@ class OrderPhotos extends React.Component {
         return(
             <div>
                 <h3 className="ui header">Order Photos</h3>
+                <p>Click, hold and drag to change order.</p>
                 <div>
                     <Reorder
                         reorderId="my-list" // Unique ID that is used internally to track this list (required)

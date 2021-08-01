@@ -13,7 +13,7 @@ from sqlitedict import SqliteDict
 from waveshare_epd import epd7in5_V2 as epd_driver
 
 #Change Variable from 'public to 'build' when deploying
-storageFolder='public'
+storageFolder='build'
 
 #Handle Exit
 def exithandler(signum, frame):
@@ -101,7 +101,7 @@ while 1:
 
             #Select Image
             print(photos[listLocation])
-            currentImage = os.path.join(photodir, "test.jpg")
+            currentImage = os.path.join(photodir, photos[listLocation])
             print(currentImage)
             print(os.path.isfile(currentImage))
 
@@ -122,7 +122,7 @@ while 1:
             epd.sleep()
 
             #Frame rate
-            time.sleep(10)
+            time.sleep(load('frame_rate'))
         
         #List is empty
         else:

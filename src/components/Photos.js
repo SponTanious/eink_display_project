@@ -7,12 +7,32 @@ import Reorder, {
     reorderFromTo,
     reorderFromToImmutable
   } from 'react-reorder';
+import PropertiesPhotos from './PropertiesPhotos';
 
 class Photos extends React.Component {
-    state = {OrderedPhotos:[]};
+    state = {OrderedPhotos:[], frameRate:3};
 
     componentDidMount(){
         this.getOrderedPhotos();
+        this.getFrameRate();
+    }
+
+    onFrameRateChange = (newFrameRate) => {
+        this.setState({frameRate: newFrameRate});
+
+        //POST NEW framerate TO API
+        fetch("/api/save_frame_rate", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.frameRate)
+            }).then()
+    }
+
+    getFrameRate = () => {
+        fetch('/api/get_frame_rate').then(res => res.json()).then(data => { this.setState({frameRate:data.frameRate}) });
     }
 
     getOrderedPhotos = () => {
@@ -54,6 +74,8 @@ class Photos extends React.Component {
             <div>
                 <h2 className="ui header">PHOTOS</h2>
                 <div className="ui divider"></div>
+                <PropertiesPhotos frameRate={this.state.frameRate} onFrameRateChange={this.onFrameRateChange}/>
+                <div className="ui hidden divider"></div>
                 <UploadPhoto/>
                 <div className="ui hidden divider"></div>
                 <OrderPhotos photos={this.state.OrderedPhotos} onPhotoDelete={this.onPhotoDelete} onReorder={this.onReorder}/>

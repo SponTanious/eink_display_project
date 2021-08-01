@@ -50,3 +50,5 @@ From inside eink_display_project folder.
    * `sudo systemctl enable api.service`
    * `sudo systemctl enable eink_display_project.service`
 
+## Use
+Go to http://raspberrypi/
