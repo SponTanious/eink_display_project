@@ -13,7 +13,7 @@ class PropertiesPhotos extends React.Component {
                 <form className="ui form">
                     <div className="field">
                         <label>Time Between Images</label>
-                        <input type="number" required id="frameRate" name="price" min="3" max="30" value={this.props.frameRate} step="0.01" onChange={this.onFrameRateChange}/>
+                        <input type="number" required id="frameRate" name="price" min="3" max="30" value={this.props.frameRate} step="1" onChange={this.onFrameRateChange}/>
                     </div>
                 </form>
             </div>

@@ -51,7 +51,7 @@ def get_current_time():
 
 @app.route('/api/save_frame_rate', methods=['POST'])
 def save_frame_rate():
-    save('frame_rate', request.json) 
+    save('frame_rate', int(request.json)) 
     return '', 200
 
 @app.route('/api/get_frame_rate')
