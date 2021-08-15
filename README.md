@@ -14,7 +14,10 @@ Once the requirements are in place (See [Install](https://github.com/SponTanious
 
 The display can be configured from the website hosted on the raspberrypi. You can access it using the domain name, https://raspberrypi or by find the ip address of the pi from your gateway. Raspberry pi will need to know the SSID name and password before you will be able to access it.
 
-There 3 main sections to the website.
+There 3 main functions to the website.
+* Picture settings
+* Upload and Delete Pictures
+* Reorder images
 
 ![eInk Display](https://github.com/SponTanious/eink_display_project/blob/master/website.png?raw=true)
 
