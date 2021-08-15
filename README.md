@@ -1,5 +1,7 @@
 # eInk Display Project
 
+![eInk Display](https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg?raw=true)
+
 Inspiartion Pulled from the following links.
 - https://hackaday.com/2020/08/23/e-paper-display-shows-movies-very-very-slowly/
 - https://github.com/AbnormalDistributions/e_paper_weather_display
