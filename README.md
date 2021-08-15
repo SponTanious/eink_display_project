@@ -1,5 +1,7 @@
 # eInk Display Project
 
+I started this project to create an eink display for my mates who recently got married to hold their wedding photos.
+
 ![eInk Display](https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg?raw=true)
 
 Inspiartion Pulled from the following links.
