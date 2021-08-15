@@ -2,7 +2,7 @@
 
 I started this project to create an eink display for my mates who recently got married to hold their wedding photos.
 
-![eInk Display](https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg?raw=true){:height="50%" width="50%"}
+<img alt="eink display" src="https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg" width="50%" height="50%">
 
 ## Plan
 I want to give this project to my friends as a gift. Which means that it needs to be user friendly.
