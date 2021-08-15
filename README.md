@@ -2,7 +2,7 @@
 
 I started this project to create an eink display for my mates who recently got married to hold their wedding photos.
 
-<img alt="eink display" src="https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg" width="50%" height="50%">
+<img alt="eink display" src="https://github.com/SponTanious/eink_display_project/blob/master/Picture%20frame.jpg" width="75%" height="75%">
 
 ## Plan
 I want to give this project to my friends as a gift. Which means that it needs to be user friendly.
@@ -17,7 +17,7 @@ There 3 main functions to the website.
 * Upload and Delete Pictures
 * Reorder images
 
-![eInk Display](https://github.com/SponTanious/eink_display_project/blob/master/website.png?raw=true){:height="50%" width="50%"}
+<img alt="eink display website" src="https://github.com/SponTanious/eink_display_project/blob/master/website.png" width="75%" height="75%">
 
 ## What I learnt
 I wanted to use this project to teach my self how to build a frontend and a backend for a website. 
